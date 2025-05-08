@@ -10,10 +10,10 @@ from pinecone import Pinecone
 # keys
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["PINECONE_API_KEY"] = st.secrets["PINECONE_API_KEY"]
-os.environ["INDEX_HOST"] = st.secrets["INDEX_HOST"]
+#os.environ["INDEX_HOST"] = st.secrets["INDEX_HOST"]
 
 # constants
-NAMESPACE_KEY = "Avijay"
+NAMESPACE_KEY = "RAG"
 TEXT_MODEL = "text-embedding-ada-002"
 QA_MODEL = "gpt-3.5-turbo"
 COMMON_TEMPLATE = """
@@ -32,8 +32,16 @@ Question: {question}
 
 
 # pinecone setup
+#pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
+#index = pc.Index(host=os.environ["INDEX_HOST"])
+
+# Initialize Pinecone client
 pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
-index = pc.Index(host=os.environ["INDEX_HOST"])
+
+#new
+# Connect to existing index (replace with your actual index name)
+index_name = "rag-demo"
+index = pc.Index(index_name)
 
 # create client
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
