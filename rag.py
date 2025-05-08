@@ -44,7 +44,8 @@ index_name = "rag-demo"
 index = pc.Index(index_name)
 
 # create client
-client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+#client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+client = OpenAI()
 
 
 def get_openai_embeddings(text: str) -> list[float]:
